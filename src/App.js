@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
+function Book({ name }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        width: "100px",
+        height: "350px",
+        border: "1px solid black",
+        borderRadius: 4,
+      }}
+    >
+      {name}
     </div>
   );
+}
+
+class App extends React.Component {
+  componentDidMount() {
+    fetch("/api/v1/books")
+      .then((res) => res.json())
+      .then(console.log)
+      .catch(console.log);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header"></header>
+      </div>
+    );
+  }
 }
 
 export default App;
